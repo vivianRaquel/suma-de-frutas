@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Suma de Frutas</title>
+    <style>
+        body {
+            font-family: Arial, ;
+        }
+        .container {
+            max-width: 1500px;
+            margin: 100 auto;
+            padding: 100px;
+            border: 30px   ;
+            background-color:  cornsilk;
+            text-align: center;
+            text-decoration: underline;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+        }
+        .apple-block {
+            display: block;
+            vertical-align:top;
+            margin: 10px;
+            border: 10px red  ;
+        }
+        img {
+            max-width: 150px;
+            height: auto;
+        }
+        .result-message {
+            font-weight: 100;
+            font-size: 50px;
+            margin-top: 50px;
+        }
+        .happy-face, .sad-face {
+            font-size: 30px;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: cornflowerblue;
+            color: white;
+            border: red;
+            cursor: auto;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Suma de Frutas</h1>
+
+        <button id="generar">Generar</button>
+
+        <script>
+            var num1, num2, resultado;
+
+            function generarNumeros() {
+                // Generar dos números aleatorios entre 1 y 10
+                num1 = Math.floor(Math.random() * 10) + 1;
+                num2 = Math.floor(Math.random() * 10) + 1;
+                
+                // Calcular la suma de los números
+                resultado = num1 + num2;
+
+                // Mostrar números y manzanas
+                mostrarNumerosYManzanas();
+            }
+
+            function mostrarNumerosYManzanas() {
+                var num1Element = document.getElementById("num1");
+                var num2Element = document.getElementById("num2");
+                var appleBlockA = document.getElementById("apple-block-a");
+                var appleBlockB = document.getElementById("apple-block-b");
+
+                num1Element.textContent = num1;
+                num2Element.textContent = num2;
+
+                appleBlockA.innerHTML = '';
+                appleBlockB.innerHTML = '';
+
+                for (var i = 0; i < num1; i++) {
+                    appleBlockA.innerHTML += '<img src="uva.png" alt="Uva">';
+                }
+
+                for (var j = 0; j < num2; j++) {
+                    appleBlockB.innerHTML += '<img src="uva.png" alt="Manzana">';
+                }
+            }
+
+            function verificarResultado() {
+                var respuestaInput = document.getElementById("respuesta");
+                var resultMessage = document.getElementById("result-message");
+                var respuesta = parseInt(respuestaInput.value);
+
+                // Verificar si la respuesta es correcta
+                if (respuesta === resultado) {
+                    resultMessage.innerHTML = '<img id="carita.png" src="CARITA.png" alt=""> Respuesta Correcta';
+                } else {
+                    resultMessage.innerHTML = '<img id="carita.png" src="CARITA.png" alt=""> Respuesta Incorrecta';
+                }
+            
+
+            }
+
+            // Asociar la función de generar números al botón "Generar"
+            var generarButton = document.getElementById("generar");
+            generarButton.addEventListener("click", generarNumeros);
+        </script>
+
+        <div class="apple-block">
+            <h2></h2>
+            <label for="sumandoA">: <span id="num1">0</span></label>
+            <div id="apple-block-a"></div>
+        </div>
+
+        <div class="apple-block">
+            <h2></h2>
+            <label for="sumandoB">: <span id="num2">0</span></label>
+            <div id="apple-block-b"></div>
+        </div>
+        
+
+        <form>
+            <label for="respuesta">Ingresa la suma de las Uvas:</label>
+            <input type="number" id="respuesta" required>
+            <button type="button" onclick="verificarResultado()">Verificar</button>
+        </form>
+
+        <div class="result-message" id="result-message"></div>
+    </div>
+    
+
+</body>
+</html>
